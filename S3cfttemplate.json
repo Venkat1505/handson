@@ -1,0 +1,55 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Create Simple S3 bucket",
+    "Parameters": {
+        "BucketName": {
+            "Type": "string",
+            "Description": "Name of the bucket"
+        }
+    },
+    "Resources": {
+        "S3Bucket": {
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+                "BucketName": {
+                    "Ref": "BucketName"
+                }
+            }
+        }
+    },
+    "S3BucketPolicy": {
+        "Type": "AWS::S3::BucketPolicy",
+        "Properties": {
+            "Bucket": {
+                "Ref": "S3Bucket"
+            }
+        },
+        "PolicyDocument": {
+            
+                "Id": "Policy1641827737545",
+                "Version": "2012-10-17",
+                "Statement": [
+                  {
+                    "Sid": "Stmt1641827736188",
+                    "Action": [
+                      "s3:GetObject"
+                    ],
+                    "Effect": "Allow",
+                    "Resource": [
+                        {
+                        "Fn::Sub": "arn:aws:s3::${BucketName}/*"
+                        }
+                    ],
+                    "Principal": {
+                      "AWS": [
+                        "arn:aws:iam::184094006175:user/venkat1"
+                      ]
+                    }
+                  }
+                ]
+            }
+
+    }
+
+}
+
