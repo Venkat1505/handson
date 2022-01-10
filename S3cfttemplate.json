@@ -22,8 +22,7 @@
         "Properties": {
             "Bucket": {
                 "Ref": "S3Bucket"
-            }
-        },
+           },
         "PolicyDocument": {
             
                 "Id": "Policy1641827737545",
